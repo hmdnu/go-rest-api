@@ -23,14 +23,16 @@ func init() {
 
 }
 
-func CreateTodo(todo models.Todo, userId string) {
+func CreateTodo(t models.Todo, userId string) {
 
-	insert, err :=
-		db.Query(fmt.Sprintf("INSERT INTO todo (id, todo, user_id) VALUES (%s, %s, %s)", todo.TodoId, todo.Todo, userId))
+	_, err := db.Exec(fmt.Sprintf("INSERT INTO todo (id, todo, user_id) VALUES (%s, %s, %s)", t.TodoId, t.Todo, userId))
 
 	if err != nil {
 		panic(err.Error())
 	}
 
-	defer insert.Close()
+}
+
+func GetTodo() {
+
 }
